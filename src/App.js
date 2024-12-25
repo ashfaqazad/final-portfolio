@@ -4,6 +4,7 @@ import Services from './Pages/Services';
 import Contact from './Pages/Contact';
 import Navbar from './components/Navbar';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import './App.css'
 import './StyleSheet/Style.css'
 import Skills from './Pages/Skills';

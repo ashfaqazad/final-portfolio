@@ -1,32 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 
-
 const Footer = () => {
+  const [isVisible, setIsVisible] = useState(false);
+
+  // Scroll to the top of the page
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  // Show or hide the "Go to Top" button based on scroll position
+  const toggleButtonVisibility = () => {
+    if (window.scrollY > 300) {
+      setIsVisible(true);
+    } else {
+      setIsVisible(false);
+    }
+  };
+
+  // Listen for scroll events
+  window.addEventListener("scroll", toggleButtonVisibility);
+
   return (
-    
     <footer style={styles.footer}>
-      {/* Navigation Links */}
-      <div style={styles.navLinks}>
-        <a href="#home" style={styles.link}>
-          Home
-        </a>
-        <a href="#about" style={styles.link}>
-          About
-        </a>
-        <a href="#services" style={styles.link}>
-          Services
-        </a>
-        <a href="#skills" style={styles.link}>
-          Skill
-        </a>
-        <a href="#projects" style={styles.link}>
-          Projects
-        </a>
-        <a href="#contact" style={styles.link}>
-          Contact
-        </a>
-      </div>
+      {/* Go to Top Button */}
+      {isVisible && (
+        <button
+          onClick={scrollToTop}
+          style={styles.scrollToTopBtn}
+        >
+          <i className="fas fa-arrow-up" style={styles.arrowIcon}></i>
+        </button>
+      )}
 
       {/* Social Icons */}
       <div style={styles.socialIcons}>
@@ -73,18 +78,8 @@ const styles = {
     padding: "20px 0",
     textAlign: "center",
     fontFamily: "Arial, sans-serif",
-  },
-  navLinks: {
-    display: "flex",
-    justifyContent: "center",
-    gap: "20px",
-    marginBottom: "20px",
-  },
-  link: {
-    color: "#fff",
-    textDecoration: "none",
-    fontSize: "16px",
-    fontWeight: "bold",
+    position: "relative",
+    borderTop: "2px solid #fff", // Border at the top of the footer
   },
   socialIcons: {
     display: "flex",
@@ -103,6 +98,27 @@ const styles = {
   copyright: {
     fontSize: "14px",
     lineHeight: "1.5",
+  },
+  scrollToTopBtn: {
+    position: "absolute",
+    top: "-20px", // Position above the footer
+    left: "50%",
+    transform: "translateX(-50%)",
+    backgroundColor: "#007bff", // Primary color
+    color: "#fff",
+    border: "none",
+    padding: "8px 15px",
+    borderRadius: "20px",
+    cursor: "pointer",
+    fontSize: "16px",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+  },
+  arrowIcon: {
+    marginRight: "5px",
+    fontSize: "16px",
   },
 };
 

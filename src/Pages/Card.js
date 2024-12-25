@@ -1,20 +1,46 @@
 import React from "react";
-// import '../StyleSheet/Style.css'
-import '../StyleSheet/Card.css'
-
+import styles from "../StyleSheet/Card.module.css";
 
 const Card = ({ title, description, buttonLabel, icon }) => {
   return (
-    <div className="card">
-      <div className="icon">{icon}</div>
-      <h2 className="card-title">{title}</h2>
-      <p className="card-description">{description}</p>
-      <button className="card-button">{buttonLabel}</button>
+    <div className={styles.card}>
+      <div className={styles.icon}>{icon}</div>
+      <h2 className={styles.cardTitle}>{title}</h2>
+      <p className={styles.cardDescription}>{description}</p>
+      <button className={styles.cardButton}>{buttonLabel}</button>
     </div>
   );
 };
 
 export default Card;
+
+
+
+
+
+
+
+
+
+
+
+// import React from "react";
+// // import '../StyleSheet/Style.css'
+// import '../StyleSheet/Card.css'
+
+
+// const Card = ({ title, description, buttonLabel, icon }) => {
+//   return (
+//     <div className="card">
+//       <div className="icon">{icon}</div>
+//       <h2 className="card-title">{title}</h2>
+//       <p className="card-description">{description}</p>
+//       <button className="card-button">{buttonLabel}</button>
+//     </div>
+//   );
+// };
+
+// export default Card;
 
 
 
