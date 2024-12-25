@@ -4,6 +4,7 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 
 const Footer = () => {
   return (
+    
     <footer style={styles.footer}>
       {/* Navigation Links */}
       <div style={styles.navLinks}>

@@ -3,7 +3,9 @@ import React from 'react';
 const Navbar = () => {
     return (
         <div className="d-flex justify-content-center align-items-center">
-            <nav className="navbar navbar-expand-lg navbar-dark bg-dark w-100 fixed-top shadow">
+            <nav className="navbar navbar-expand-lg navbar-dark bg-dark w-100 fixed-top shadow"
+            // style={{backgroundColor: "#c778dd"}}
+            >
                 <div className="container-fluid">
                     {/* Navbar Brand (Logo) */}
                     <a className="navbar-brand" href="#home">Azad.Dev</a>
@@ -26,9 +28,9 @@ const Navbar = () => {
                             <li className="nav-item">
                                 <a className="nav-link" href="#contact">Contact</a>
                             </li>
-                            <li className="nav-item">
+                            {/* <li className="nav-item">
                                 <a className="nav-link" href="#footer">Footer</a>
-                            </li>
+                            </li> */}
                         </ul>
                     </div>
 

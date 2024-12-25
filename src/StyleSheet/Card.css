@@ -1,9 +1,3 @@
-/* .cards-grid {
-  display: flex;
-  justify-content: space-around;
-  gap: 20px;
-  flex-wrap: wrap;
-}
 
 .card {
   background: #1d1d1d !important;
@@ -46,4 +40,4 @@
   border-radius: 4px;
   cursor: pointer;
 }
- */
+ 

@@ -1,7 +1,9 @@
 import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import "../StyleSheet/Style.css";
+// import "../StyleSheet/Style.css";
+import "../StyleSheet/Contact.css"; // Import the external CSS file
+
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -68,6 +70,27 @@ const Contact = () => {
     });
   }, []);
 
+  const inputStyle = {
+    backgroundColor: "#2c2c2c", // Dark gray background
+    color: "#fff", // White text
+    border: "1px solid #444", // Slightly lighter gray border
+    padding: "10px",
+    borderRadius: "5px",
+    width: "100%",
+    marginBottom: "15px",
+    fontSize: "16px",
+  };
+
+  const buttonStyle = {
+    backgroundColor: "#58a6ff",
+    color: "#fff",
+    border: "none",
+    padding: "10px 20px",
+    borderRadius: "5px",
+    cursor: "pointer",
+    fontSize: "16px",
+    fontWeight: "bold",
+  };
 
   return (
     <section
@@ -117,18 +140,22 @@ const Contact = () => {
                   <textarea
                     placeholder={placeholder}
                     ref={(el) => (formFieldsRef.current[index] = el)}
+                    style={inputStyle}
                   ></textarea>
                 ) : (
                   <input
                     type={placeholder === "Your Email" ? "email" : "text"}
                     placeholder={placeholder}
                     ref={(el) => (formFieldsRef.current[index] = el)}
+                    style={inputStyle}
                   />
                 )}
               </React.Fragment>
             )
           )}
-          <button type="submit">Send Message</button>
+          <button type="submit" style={buttonStyle}>
+            Send Message
+          </button>
         </form>
       </div>
     </section>
@@ -136,106 +163,3 @@ const Contact = () => {
 };
 
 export default Contact;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// import React, { useEffect, useRef } from "react";
-// import { gsap } from "gsap";
-// import '../StyleSheet/Style.css'
-
-// const Contact = () => {
-//   const sectionRef = useRef(null);
-//   const headingRef = useRef(null);
-
-//   useEffect(() => {
-//     // GSAP animation for the section
-//     gsap.fromTo(
-//       sectionRef.current,
-//       { opacity: 0, y: 50 },
-//       { opacity: 1, y: 0, duration: 1 }
-//     );
-
-//     gsap.fromTo(
-//       headingRef.current,
-//       { opacity: 0, x: -100 },
-//       { opacity: 1, x: 0, duration: 1, delay: 0.3 }
-//     );
-//   }, []);
-
-//   return (
-//     <section
-//       id="contact"
-//       ref={sectionRef}
-//       style={{ height: "100vh", backgroundColor: "#121212", color: "#fff" }}
-//       className="contact-section"
-//     >
-//       <div className="container">
-//         <h1 ref={headingRef} className="contact-heading">Contact Me</h1>
-//         <p className="contact-text">
-//           Ready to elevate your digital presence? Whether you're starting a new website,
-//           refreshing an existing one, or seeking expert guidance on web technologies,
-//           I'm here to assist. Contact me to discuss your project, inquire about services,
-//           or simply say hello.
-//         </p>
-
-//         <div className="contact-grid">
-//           <div className="contact-item">
-//             <h2>Email</h2>
-//             <p>prasanth.ragava@gmail.com</p>
-//             <button>Send an Email</button>
-//           </div>
-//           <div className="contact-item">
-//             <h2>LinkedIn</h2>
-//             <p>prasanth</p>
-//             <button>Send a Message</button>
-//           </div>
-//           <div className="contact-item">
-//             <h2>WhatsApp</h2>
-//             <p>+91 7337578778</p>
-//             <button>Send a Message</button>
-//           </div>
-//         </div>
-
-//         <form className="contact-form">
-//           <input type="text" placeholder="Your Full Name" />
-//           <input type="email" placeholder="Your Email" />
-//           <textarea placeholder="Your Message"></textarea>
-//           <button type="submit">Send Message</button>
-//         </form>
-//       </div>
-//     </section>
-//   );
-// };
-
-// export default Contact;
-
-
-
-
-
-
-// // import React from 'react'
-
-// // const Contact = () => {
-// //     return (
-// //         <section id="contact" style={{ height: '100vh'}}>
-// //                     <h1>Contact Section</h1>
-
-// //         </section>
-// //     )
-// // }
-
-// // export default Contact

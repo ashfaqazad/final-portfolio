@@ -1,0 +1,147 @@
+/* Cards */
+.services-section {
+    padding: 50px;
+    text-align: center;
+  }
+  
+  .services-heading {
+    font-size: 3rem;
+    margin-bottom: 10px;
+    color: #4a90e2;
+  }
+  
+  .services-subheading {
+    font-size: 1.2rem;
+    margin-bottom: 40px;
+  }
+  
+  /* .cards-grid {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+    flex-wrap: wrap;
+  } */
+
+  
+  .services-cards-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+  
+
+  .services-card {
+    position: relative;
+    z-index: 1;
+  }
+  
+
+
+  /* .card {
+    background: #1d1d1d !important;
+    color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    width: 300px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
+  } */
+  
+  .card:hover {
+    transform: translateY(-10px);
+  }
+  
+  .icon {
+    font-size: 3rem;
+    margin-bottom: 10px;
+    color: #4a90e2;
+  }
+  
+  .card-title {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #58a6ff !important;
+  }
+  
+  .card-description {
+    font-size: 1rem;
+    margin-bottom: 20px;
+    color: white;
+  }
+  
+  .card-button {
+    background-color: #4a90e2;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .services-heading {
+      font-size: 2.5rem;
+    }
+  
+    .services-subheading {
+      font-size: 1rem;
+    }
+  
+    .cards-grid {
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
+    }
+  
+    .card {
+      width: 90%;
+    }
+  
+    .icon {
+      font-size: 2.5rem;
+    }
+  
+    .card-title {
+      font-size: 1.2rem;
+    }
+  
+    .card-description {
+      font-size: 0.9rem;
+    }
+  
+    .card-button {
+      font-size: 0.9rem;
+      padding: 8px 12px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .services-heading {
+      font-size: 2rem;
+    }
+  
+    .services-subheading {
+      font-size: 0.9rem;
+    }
+  
+    .icon {
+      font-size: 2rem;
+    }
+  
+    .card-title {
+      font-size: 1rem;
+    }
+  
+    .card-description {
+      font-size: 0.8rem;
+    }
+  
+    .card-button {
+      font-size: 0.8rem;
+      padding: 6px 10px;
+    }
+  }
+  

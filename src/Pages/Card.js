@@ -1,5 +1,6 @@
 import React from "react";
-import '../StyleSheet/Style.css'
+// import '../StyleSheet/Style.css'
+import '../StyleSheet/Card.css'
 
 
 const Card = ({ title, description, buttonLabel, icon }) => {

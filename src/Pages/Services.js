@@ -1,7 +1,9 @@
 import React, { useRef, useEffect } from "react";
 import { gsap } from "gsap";
 import Card from "./Card";
-import '../StyleSheet/Style.css'
+// import '../StyleSheet/Style.css'
+import "../StyleSheet/Services.css"; // Import the external CSS file
+
 
 
 const Services = () => {
@@ -39,7 +41,7 @@ const Services = () => {
           projects that inspire you and captivate your customers.
         </p>
 
-        <div className="cards-grid">
+        <div className="services-cards-grid services-card ">
           <div ref={(el) => (cardsRef.current[0] = el)}>
             <Card
               title="UI/UX Design"

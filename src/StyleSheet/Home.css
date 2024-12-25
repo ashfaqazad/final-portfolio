@@ -1,0 +1,101 @@
+.home-section {
+    height: 100vh;
+    background-color: #0d1117;
+    color: #c9d1d9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 50px;
+  }
+  
+  .home-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .home-text {
+    margin: 0 auto;
+    max-width: 600px;
+    text-align: center;
+  }
+  
+  .home-text h2 {
+    font-size: 40px;
+    color: #58a6ff;
+    font-weight: bold;
+  }
+  
+  .home-text h2 .highlight {
+    color: #c778dd;
+  }
+  
+  .home-text h1 {
+    font-size: 50px;
+    color: #ffffff;
+    font-weight: bold;
+  }
+  
+  .home-text p {
+    font-size: 18px;
+    line-height: 1.8;
+  }
+  
+  .home-stats {
+    display: flex;
+    gap: 30px;
+    margin-top: 20px;
+  }
+  
+  .stat-item {
+    text-align: center;
+  }
+  
+  .stat-item h1 {
+    font-size: 40px;
+    color: #58a6ff;
+  }
+  
+  .home-buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+  }
+  
+  .btn-primary,
+  .btn-secondary {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  
+  .btn-primary {
+    background-color: #58a6ff;
+    color: #0d1117;
+  }
+  
+  .btn-secondary {
+    background-color: #ffffff;
+    color: #0d1117;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .home-text h1 {
+      font-size: 35px;
+    }
+  
+    .home-text h2 {
+      font-size: 30px;
+    }
+  
+    .home-stats {
+      flex-direction: column;
+      gap: 15px;
+    }
+  }
+  
