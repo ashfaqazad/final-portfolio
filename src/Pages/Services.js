@@ -1,13 +1,42 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { gsap } from "gsap";
 import Card from "./Card";
+import Modal from "./Modal"; // Assuming Modal is a separate component
 import styles from "../StyleSheet/Services.module.css";
-import Modal from "./Modal";
 
 const Services = () => {
+  const [selectedCard, setSelectedCard] = useState(null); // State for modal
   const headingRef = useRef(null);
   const cardsRef = useRef([]);
-  const [selectedCard, setSelectedCard] = useState(null); // State for selected card
+
+  const cardData = [
+    {
+      title: "UI/UX Design",
+      description:
+        "Crafting intuitive and engaging user interfaces is my passion. I focus on creating visually appealing, user-friendly, and accessible designs.",
+      icon: "🎨",
+    },
+    {
+      title: "Web Development",
+      description:
+        "I specialize in building custom websites tailored to your unique needs, from small business sites to large-scale web applications.",
+      icon: "💻",
+    },
+    {
+      title: "API Integration",
+      description:
+        "Integrating your website with third-party services and APIs can greatly enhance its functionality and user experience.",
+      icon: "🔗",
+    },
+  ];
+
+  const handleReadMore = (index) => {
+    setSelectedCard(index); // Set selected card index for modal
+  };
+
+  const closeModal = () => {
+    setSelectedCard(null); // Close modal
+  };
 
   useEffect(() => {
     gsap.fromTo(
@@ -23,34 +52,6 @@ const Services = () => {
     );
   }, []);
 
-  // Function to open modal
-  const handleReadMore = (cardIndex) => {
-    setSelectedCard(cardIndex);
-  };
-
-  // Function to close modal
-  const closeModal = () => {
-    setSelectedCard(null);
-  };
-
-  const cardData = [
-    {
-      title: "UI/UX Design",
-      description: "Crafting intuitive and engaging user interfaces is my passion. I focus on creating visually appealing, user-friendly, and accessible designs.",
-      icon: "🎨",
-    },
-    {
-      title: "Web Development",
-      description: "I specialize in building custom websites tailored to your unique needs, from small business sites to large-scale web applications.",
-      icon: "💻",
-    },
-    {
-      title: "API Integration",
-      description: "Integrating your website with third-party services and APIs can greatly enhance its functionality and user experience.",
-      icon: "🔗",
-    },
-  ];
-
   return (
     <section
       id="services"
@@ -62,7 +63,8 @@ const Services = () => {
           Services
         </h1>
         <p className={styles.servicesSubheading}>
-          I transform your innovative ideas into distinctive, high-quality web projects that inspire you and captivate your customers.
+          I transform your innovative ideas into distinctive, high-quality web
+          projects that inspire you and captivate your customers.
         </p>
 
         <div className={styles.servicesCardsGrid}>
@@ -73,21 +75,20 @@ const Services = () => {
                 description={card.description}
                 buttonLabel="Read More"
                 icon={card.icon}
-                onClick={() => handleReadMore(index)} // Pass index to open modal
+                onClick={() => handleReadMore(index)} // Pass index to handler
               />
             </div>
           ))}
         </div>
-      </div>
 
-      {/* Modal */}
-      {selectedCard !== null && (
-        <Modal
-          title={cardData[selectedCard].title}
-          description={cardData[selectedCard].description}
-          onClose={closeModal}
-        />
-      )}
+        {selectedCard !== null && (
+          <Modal
+            title={cardData[selectedCard].title}
+            description={cardData[selectedCard].description}
+            onClose={closeModal}
+          />
+        )}
+      </div>
     </section>
   );
 };
