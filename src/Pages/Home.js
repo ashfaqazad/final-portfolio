@@ -18,11 +18,11 @@ const Home = () => {
       defaults: { duration: 1, ease: "power2.out" },
     });
 
-    // Animate image
+    // Animate image with custom rotation
     tl.fromTo(
       imageRef.current,
-      { opacity: 0, rotate: -360 },
-      { opacity: 1, rotate: 0 }
+      { opacity: 0, rotate: -180 }, // Changed from -360 to -180
+      { opacity: 1, rotate: 45 } // Changed from 0 to 45
     );
 
     // Animate text
@@ -74,7 +74,7 @@ const Home = () => {
           </div>
           <div className="home-buttons">
             <button className="btn-primary">CV & Credentials</button>
-            <button className="btn-secondary">Set Cursor</button>
+            {/* <button className="btn-secondary">Set Cursor</button> */}
           </div>
         </div>
       </div>
@@ -83,7 +83,6 @@ const Home = () => {
 };
 
 export default Home;
-
 
 
 

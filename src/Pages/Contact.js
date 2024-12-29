@@ -1,9 +1,8 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-// import "../StyleSheet/Style.css";
+import emailjs from "@emailjs/browser";
 import "../StyleSheet/Contact.css"; // Import the external CSS file
-
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -12,6 +11,8 @@ const Contact = () => {
   const headingRef = useRef(null);
   const contactItemsRef = useRef([]);
   const formFieldsRef = useRef([]);
+  const formRef = useRef();
+  const [formSent, setFormSent] = useState(false); // State to track if the form is sent
 
   useEffect(() => {
     // GSAP animation for the section
@@ -70,13 +71,52 @@ const Contact = () => {
     });
   }, []);
 
+
+
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+  
+    emailjs
+      .sendForm(
+        "service_1ml7ra8",  // Your service ID
+        "template_ha9q7tg",  // Your template ID
+        formRef.current,     // Form Reference
+        {
+          publicKey: "Jx-9b_rSq7FKWAIVH",
+          from_name: formRef.current["user_name"].value,  // User's name (for from_name in template)
+          from_email: formRef.current["user_email"].value, // User's email (for from_email in template)
+          message: formRef.current["message"].value,  // Message content
+          to_name: "Your Name", // Recipient name (use your own name here)
+          reply_to: formRef.current["user_email"].value, // Reply-to email
+        }
+      )
+      .then(
+        () => {
+          setFormSent(true); // Set formSent to true
+          formFieldsRef.current.forEach((field) => (field.value = "")); // Clear form fields
+        },
+        (error) => {
+          console.log("FAILED...", error.text);
+          setFormSent(false);
+          alert("Message failed to send. Please try again.");
+        }
+      );
+  };
+      
+
+
+
+
+
+
   const inputStyle = {
     backgroundColor: "#2c2c2c", // Dark gray background
     color: "#fff", // White text
     border: "1px solid #444", // Slightly lighter gray border
     padding: "10px",
     borderRadius: "5px",
-    width: "100%",
+    // width: "100%",
     marginBottom: "15px",
     fontSize: "16px",
   };
@@ -132,7 +172,11 @@ const Contact = () => {
           ))}
         </div>
 
-        <form className="contact-form">
+        <form
+          ref={formRef}
+          className="contact-form"
+          onSubmit={sendEmail}
+        >
           {["Your Full Name", "Your Email", "Your Message"].map(
             (placeholder, index) => (
               <React.Fragment key={index}>
@@ -141,6 +185,7 @@ const Contact = () => {
                     placeholder={placeholder}
                     ref={(el) => (formFieldsRef.current[index] = el)}
                     style={inputStyle}
+                    name="message"
                   ></textarea>
                 ) : (
                   <input
@@ -148,6 +193,7 @@ const Contact = () => {
                     placeholder={placeholder}
                     ref={(el) => (formFieldsRef.current[index] = el)}
                     style={inputStyle}
+                    name={placeholder === "Your Email" ? "user_email" : "user_name"}
                   />
                 )}
               </React.Fragment>

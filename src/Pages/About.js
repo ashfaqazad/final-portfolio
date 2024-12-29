@@ -11,7 +11,7 @@ const About = () => {
 
   useEffect(() => {
     gsap.to(imageRef.current, {
-      rotate: 30,
+      rotate: 0,
       duration: 0.2,
       scrollTrigger: {
         trigger: imageRef.current,

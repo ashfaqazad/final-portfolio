@@ -9,6 +9,7 @@
   justify-content: center;
   align-items: center;
   z-index: 1000;
+
 }
 
 .modalContent {
@@ -22,4 +23,19 @@
   box-shadow: none; /* Shadow is unnecessary for full-screen modals */
   border-radius: 0; /* Remove rounded corners for full-screen */
   overflow: auto; /* Enable scrolling if content overflows */
+  border: 1px solid #58a6ff; /* Add primary color border */
+  border-radius: 20px;
+
+}
+
+
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .modalContent {
+    width: auto;
+    border: 1px solid #58a6ff; /* Add primary color border */
+    border-radius: 20px;
+    margin: 10px;
+  }
 }

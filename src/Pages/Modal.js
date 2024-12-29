@@ -28,7 +28,7 @@ const Modal = ({ title, description, onClose }) => {
       <div className={styles.modalContent} ref={modalRef}>
         <h2>{title}</h2>
         <p>{description}</p>
-        <button onClick={handleClose}>Close</button>
+        <button className='btn btn-primary' onClick={handleClose}>Close</button>
       </div>
     </div>
   );
