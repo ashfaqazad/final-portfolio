@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { Link as ScrollLink } from "react-scroll";
+import "../StyleSheet/Navbar.css";
+
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -15,6 +17,7 @@ const Navbar = () => {
     return (
         <div className="d-flex justify-content-center align-items-center">
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark w-100 fixed-top shadow">
+                {/* fixed-top */}
                 <div className="container-fluid">
                     {/* Navbar Brand (Logo) */}
                     <ScrollLink
@@ -38,7 +41,7 @@ const Navbar = () => {
                     >
                         <span className="navbar-toggler-icon"></span>
                     </button>
-                    
+
 
                     {/* Navbar Links */}
                     <div
@@ -94,6 +97,24 @@ const Navbar = () => {
                                     Skills
                                 </ScrollLink>
                             </li>
+
+
+                            <li className="nav-item px-3">
+                                <ScrollLink
+                                    to="projects"
+                                    smooth={true}
+                                    duration={500}
+                                    className="nav-link"
+                                    onClick={closeNavbar}
+                                    style={{ fontSize: "1.25rem", cursor: "pointer" }}
+                                >
+                                    Projects
+                                </ScrollLink>
+                            </li>
+
+
+
+
                             <li className="nav-item px-3">
                                 <ScrollLink
                                     to="contact"
@@ -110,16 +131,29 @@ const Navbar = () => {
                     </div>
 
                     {/* Hire Me Button */}
+
                     <ScrollLink
                         to="contact"
                         smooth={true}
                         duration={500}
-                        className="btn btn-outline-light d-none d-lg-block ml-auto"
+                        className="hire-me"
+                        onClick={closeNavbar}
+                    >
+                        Hire Me
+                    </ScrollLink>
+
+
+                    {/* <ScrollLink
+                        to="contact"
+                        smooth={true}
+                        duration={500}
+                        className="hire-me"
+                        // btn btn-outline-light d-none d-lg-block ml-auto
                         onClick={closeNavbar}
                         style={{ cursor: "pointer" }}
                     >
                         Hire Me
-                    </ScrollLink>
+                    </ScrollLink> */}
                 </div>
             </nav>
         </div>

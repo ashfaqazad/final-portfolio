@@ -1,0 +1,31 @@
+.nav-link {
+    color: white !important; /* Default color */
+    transition: color 0.3s ease !important; /* Smooth transition */
+}
+
+.nav-link:hover {
+    color: #8750F7 !important; /* Hover color */
+}
+
+
+.hire-me {
+    font-family: Arial, sans-serif;
+    display: inline-block;
+    background-color:  #8750F7; /* Primary button color */
+    color: #fff; /* White text */
+    /* border: 2px solid #007bff; Border matching background */
+    border-radius: 50px; /* Rounded corners */
+    padding: 5px 20px; /* Padding inside button */
+    text-align: center;
+    text-decoration: none; /* Remove underline */
+    font-size: 16px; /* Text size */
+    transition: all 0.3s ease; /* Smooth hover effect */
+    cursor: pointer; /* Pointer on hover */
+  }
+  
+  .hire-me:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+    color: #e2e6ea; /* Slightly lighter text on hover */
+    border-color: #0056b3; /* Change border color on hover */
+  }
+  

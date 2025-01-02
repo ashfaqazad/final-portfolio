@@ -1,61 +1,125 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import "../StyleSheet/About.css"; // Import the external CSS file
-
-gsap.registerPlugin(ScrollTrigger);
+import "../StyleSheet/About.css";
 
 const About = () => {
   const imageRef = useRef(null);
   const textRef = useRef(null);
+  const expandedContentRef = useRef(null);
+
+  const [expanded, setExpanded] = useState(false);
+
+  // Handle "Read More" click
+  const handleReadMore = () => {
+    gsap.to([imageRef.current, textRef.current], {
+      opacity: 0,
+      scale: 0.8,
+      duration: 0.8,
+      ease: "power2.out",
+      onComplete: () => setExpanded(true),
+    });
+  };
+
+
+
+
+  const handleShowLess = () => {
+    if (expandedContentRef.current) {
+      gsap.to(expandedContentRef.current, {
+        opacity: 0,
+        scale: 0.8,
+        duration: 0.8,
+        ease: "power2.out",
+        onComplete: () => {
+          setExpanded(false);
+  
+          // Reset image visibility explicitly
+          gsap.set(imageRef.current, { opacity: 1, scale: 1 });  // Ensure image is visible
+  
+          // Animate About Me content and image back in
+          if (textRef.current) {
+            gsap.fromTo(
+              textRef.current,
+              { opacity: 0, scale: 0.8 },
+              { opacity: 1, scale: 1, duration: 0.8, ease: "power2.out" }
+            );
+          }
+        },
+      });
+    }
+  };
+      
+
+
+  // Handle "Show Less" click
+  // const handleShowLess = () => {
+  //   if (expandedContentRef.current) {  // Check if ref is valid
+  //     gsap.to(expandedContentRef.current, {
+  //       opacity: 0,
+  //       scale: 0.8,
+  //       duration: 0.8,
+  //       ease: "power2.out",
+  //       onComplete: () => {
+  //         setExpanded(false);
+  
+  //         // Animate About Me content back in
+  //         if (imageRef.current && textRef.current) {  // Check for validity of refs
+  //           gsap.fromTo(
+  //             [imageRef.current, textRef.current],
+  //             { opacity: 0, scale: 0.8 },
+  //             { opacity: 1, scale: 1, duration: 0.8, ease: "power2.out" }
+  //           );
+  //         }
+  //       },
+  //     });
+  //   }
+  // };
+  
 
   useEffect(() => {
-    gsap.to(imageRef.current, {
-      rotate: 0,
-      duration: 0.2,
-      scrollTrigger: {
-        trigger: imageRef.current,
-        start: "top center",
-        end: "bottom center",
-        scrub: true,
-      },
-    });
-
-    gsap.fromTo(
-      textRef.current,
-      { opacity: 0, x: -50 },
-      {
-        opacity: 1,
-        x: 0,
-        duration: 1,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: textRef.current,
-          start: "top center",
-        },
-      }
-    );
-  }, []);
-
+    if (expanded && expandedContentRef.current) {
+      gsap.fromTo(
+        expandedContentRef.current,
+        { opacity: 0, scale: 0.8 },
+        { opacity: 1, scale: 1, duration: 0.8, ease: "power2.out" }
+      );
+    }
+  }, [expanded]);  // Dependency on `expanded` state
+  
   return (
     <section id="about">
       <div className="about-container">
-        <div ref={imageRef} className="about-image">
-          <img src="/image.jpg" alt="Profile" />
-        </div>
-        <div ref={textRef} className="about-text">
-          <h2>About Me</h2>
-          <p>
-            I am <span className="highlight">Ashfaque Ahmed</span>, a
-            self-taught full-stack developer with a strong passion for coding
-            and a dedication to continuous learning. I have gained my skills
-            through various online platforms, including{" "}
-            <span className="highlight">freeCodeCamp</span>,{" "}
-            <span className="highlight">Coursera</span>, and{" "}
-            <span className="highlight">MDN Web Docs</span>.
-          </p>
-          <button>Read More</button>
-        </div>
+        {!expanded ? (
+          <>
+          
+            <div ref={imageRef} className="about-image">
+              <img src="/Images/image.jpg" alt="Profile" />
+            </div>
+            <div ref={textRef} className="about-text">
+              <h2>About Me</h2>
+              <p>
+                I am Ashfaque Ahmed, a self-taught full-stack developer with an
+                unwavering passion for coding and a commitment to continuous
+                learning.
+              </p>
+              <button onClick={handleReadMore}>Read More</button>
+            </div>
+          </>
+        ) : (
+          <div
+            ref={expandedContentRef}
+            className="about-expanded-text d-flex justify-content-center align-items-center flex-column text-center"
+          >
+            <h2>About Me</h2>
+            <p>
+              Over the years, I have honed my skills in various technologies,
+              including React, Node.js, and MongoDB. My projects reflect a
+              dedication to creating efficient and visually appealing
+              applications that solve real-world problems.
+            </p>
+            <button className="bt btn-primary" onClick={handleShowLess}>Show Less</button>
+          </div>
+        )}
       </div>
     </section>
   );
@@ -68,111 +132,374 @@ export default About;
 
 
 
-
-
-// import React, { useEffect, useRef } from "react";
+// import React, { useEffect, useRef, useState } from "react";
 // import { gsap } from "gsap";
 // import { ScrollTrigger } from "gsap/ScrollTrigger";
+// import "../StyleSheet/About.css";
 
-// // GSAP ScrollTrigger ko register karen
 // gsap.registerPlugin(ScrollTrigger);
 
 // const About = () => {
 //   const imageRef = useRef(null);
 //   const textRef = useRef(null);
+//   const [expanded, setExpanded] = useState(false);
 
-//   useEffect(() => {
-//     // Image rotation animation on scroll
-//     gsap.to(imageRef.current, {
-//       rotate: 30, // Reduced rotation (was 150)
-//       duration: 0.2, // Animation duration
-//       scrollTrigger: {
-//         trigger: imageRef.current,
-//         start: "top center", // Animation start position
-//         end: "bottom center", // Animation end position
-//         scrub: true, // Smooth animation on scroll
+//   const handleReadMore = () => {
+//     gsap.to([imageRef.current, textRef.current], {
+//       opacity: 0, // Fade out effect
+//       scale: 0.8, // Slightly shrink for smooth transition
+//       duration: 1,
+//       ease: "power2.out",
+//       onComplete: () => {
+//         setExpanded(true); // Show expanded content
 //       },
 //     });
+//   };
 
-//     // Text animation
-//     gsap.fromTo(
-//       textRef.current,
-//       { opacity: 0, x: -50 },
-//       {
+//   useEffect(() => {
+//     if (expanded) {
+//       const expandedText = document.querySelector(".about-expanded-text");
+//       gsap.to(expandedText, {
 //         opacity: 1,
-//         x: 0,
+//         scale: 1, // Bring back to normal size
 //         duration: 1,
 //         ease: "power2.out",
-//         scrollTrigger: {
-//           trigger: textRef.current,
-//           start: "top center",
-//         },
-//       }
-//     );
-//   }, []);
+//       });
+//     }
+//   }, [expanded]);
 
 //   return (
 //     <section id="about">
-//     <div
-//       style={{
-//         display: "flex",
-//         alignItems: "center",
-//         justifyContent: "center",
-//         flexDirection: "row",
-//         padding: "50px",
-//         backgroundColor: "#202020",
-//         color: "#c9d1d9",
-//         minHeight: "100vh",
-//       }}
-//     >
-//       <div
-//         ref={imageRef}
-//         style={{
-//           border: "2px solid #58a6ff",
-//           borderRadius: "15px",
-//           overflow: "hidden",
-//           display: "inline-block",
-//         }}
-//       >
-//         <img
-//           src="/image.jpg"
-//           alt="Profile"
-//           style={{ width: "250px", height: "250px" }}
-//         />
+//       <div className="about-container">
+//         {!expanded ? (
+//           <>
+//             <div ref={imageRef} className="about-image">
+//               <img src="/images/image.jpg" alt="Profile" />
+//             </div>
+//             <div ref={textRef} className="about-text">
+//               <h2>About Me</h2>
+//               <p>
+//                 I am Ashfaque Ahmed, a self-taught full-stack developer with an
+//                 unwavering passion for coding and a commitment to continuous
+//                 learning.
+//               </p>
+//               <button onClick={handleReadMore}>Read More</button>
+//             </div>
+//           </>
+//         ) : (
+//           <div className="about-expanded-text">
+//             <h2>More About Me</h2>
+//             <p>
+//               Over the years, I have honed my skills in various technologies,
+//               including React, Node.js, and MongoDB. My projects reflect a
+//               dedication to creating efficient and visually appealing
+//               applications that solve real-world problems.
+//             </p>
+//           </div>
+//         )}
 //       </div>
-//       <div ref={textRef} style={{ marginLeft: "50px", maxWidth: "600px" }}> {/* Increased margin */}
-//         <h2 style={{ fontSize: "40px", color: "#58a6ff", fontWeight: "bold" }}>
-//           About Me
-//         </h2>
-//         <p style={{ fontSize: "18px", lineHeight: "1.8" }}>
-//           I am{" "}
-//           <span style={{ color: "#58a6ff", fontWeight: "bold" }}>
-//             Ashfaque Ahmed
-//           </span>
-//           , a self-taught full-stack developer with a strong passion for coding
-//           and a dedication to continuous learning. I have gained my skills
-//           through various online platforms, including{" "}
-//           <span style={{ color: "#58a6ff" }}>freeCodeCamp</span>,{" "}
-//           <span style={{ color: "#58a6ff" }}>Coursera</span>, and{" "}
-//           <span style={{ color: "#58a6ff" }}>MDN Web Docs</span>.
-//         </p>
-//         <button
-//           style={{
-//             padding: "10px 20px",
-//             backgroundColor: "#58a6ff",
-//             color: "#0d1117",
-//             border: "none",
-//             borderRadius: "5px",
-//             cursor: "pointer",
-//             fontWeight: "bold",
-//           }}
-//         >
-//           Read More
-//         </button>
-//       </div>
-//     </div>
 //     </section>
 //   );
 // };
 
 // export default About;
+
+
+
+
+
+
+
+
+
+
+
+
+
+// import React, { useEffect, useRef, useState } from "react";
+// import { gsap } from "gsap";
+// import { ScrollTrigger } from "gsap/ScrollTrigger";
+// import "../StyleSheet/About.css";
+
+// gsap.registerPlugin(ScrollTrigger);
+
+// const About = () => {
+//   const imageRef = useRef(null);
+//   const textRef = useRef(null);
+//   const [expanded, setExpanded] = useState(false);
+
+
+//   const handleReadMore = () => {
+//     console.log("Animation Start");
+//     gsap.to([imageRef.current, textRef.current], {
+//       x: -300,
+//       opacity: 0,
+//       duration: 1,
+//       ease: "power2.out",
+//       onComplete: () => {
+//         console.log("Animation Complete");
+//         setExpanded((prevExpanded) => {
+//           console.log("Previous State:", prevExpanded);
+//           return true;
+//         });
+//       },
+//     });
+//   };
+
+
+//   useEffect(() => {
+//     if (expanded) {
+//       console.log(
+//         "Expanded Content DOM Node:",
+//         document.querySelector(".about-expanded-text")
+//       );
+//     }
+//   }, [expanded]);
+
+
+
+//   return (
+//     <section id="about">
+//       <div className="about-container">
+//         {!expanded ? (
+//           <>
+//             <div ref={imageRef} className="about-image">
+//               <img src="/images/image.jpg" alt="Profile" />
+//             </div>
+//             <div ref={textRef} className="about-text">
+//               <h2>About Me</h2>
+//               <p>
+//                 I am Ashfaque Ahmed, a self-taught full-stack developer with an
+//                 unwavering passion for coding and a commitment to continuous
+//                 learning.
+//               </p>
+//               <button onClick={handleReadMore}>Read More</button>
+//             </div>
+//           </>
+//         ) : (
+//           <div className="about-expanded-text d-flex justify-content-center align-items-center flex-column text-center">
+//             <h2>More About Me</h2>
+//             <p>
+//               Over the years, I have honed my skills in various technologies,
+//               including React, Node.js, and MongoDB. My projects reflect a
+//               dedication to creating efficient and visually appealing
+//               applications that solve real-world problems.
+//             </p>
+//           </div>
+//         )}
+
+
+//       </div>
+//     </section>
+//   );
+// };
+
+// export default About;
+
+
+
+
+
+
+
+
+  // useEffect(() => {
+  //   // Initial animations
+  //   if (!expanded) {
+  //     gsap.fromTo(
+  //       imageRef.current,
+  //       { rotate: -90, x: -200, opacity: 0 },
+  //       {
+  //         rotate: 0,
+  //         x: 0,
+  //         opacity: 1,
+  //         duration: 1,
+  //         ease: "power2.out",
+  //         scrollTrigger: {
+  //           trigger: imageRef.current,
+  //           start: "top center+=100",
+  //         },
+  //       }
+  //     );
+
+  //     gsap.fromTo(
+  //       textRef.current,
+  //       { opacity: 0, x: -50 },
+  //       {
+  //         opacity: 1,
+  //         x: 0,
+  //         duration: 1,
+  //         ease: "power2.out",
+  //         scrollTrigger: {
+  //           trigger: textRef.current,
+  //           start: "top center",
+  //         },
+  //       }
+  //     );
+  //   }
+  // }, [expanded]);
+
+
+
+  // useEffect(() => {
+  //   const ctx = gsap.context(() => {
+  //     gsap.fromTo(
+  //       imageRef.current,
+  //       { rotate: -90, x: -200, opacity: 0 },
+  //       { rotate: 0, x: 0, opacity: 1, duration: 1, ease: "power2.out" }
+  //     );
+  //   });
+  //   return () => ctx.revert(); // کلین اپ
+  // }, []);
+
+
+
+
+  // const handleReadMore = () => {
+  //   setExpanded(true); // Skip animation
+  // };
+
+
+
+
+
+
+
+
+
+
+
+// import React, { useEffect, useRef, useState } from "react";
+// import ReactDOM from "react-dom"; // Import for createPortal
+// import { gsap } from "gsap";
+// import { ScrollTrigger } from "gsap/ScrollTrigger";
+// import "../StyleSheet/About.css";
+
+// gsap.registerPlugin(ScrollTrigger);
+
+// const About = () => {
+//   const imageRef = useRef(null);
+//   const textRef = useRef(null);
+//   const [expanded, setExpanded] = useState(false);
+
+//   useEffect(() => {
+//     if (!expanded) {
+//       gsap.fromTo(
+//         imageRef.current,
+//         { rotate: -90, x: -200, opacity: 0 },
+//         {
+//           rotate: 0,
+//           x: 0,
+//           opacity: 1,
+//           duration: 1,
+//           ease: "power2.out",
+//           scrollTrigger: {
+//             trigger: imageRef.current,
+//             start: "top center+=100",
+//           },
+//         }
+//       );
+
+//       gsap.fromTo(
+//         textRef.current,
+//         { opacity: 0, x: -50 },
+//         {
+//           opacity: 1,
+//           x: 0,
+//           duration: 1,
+//           ease: "power2.out",
+//           scrollTrigger: {
+//             trigger: textRef.current,
+//             start: "top center",
+//           },
+//         }
+//       );
+//     }
+//   }, [expanded]);
+
+
+//   const handleReadMore = () => {
+//     console.log("Animation Start");
+//     gsap.to([imageRef.current, textRef.current], {
+//       x: -300,
+//       opacity: 0,
+//       duration: 1,
+//       ease: "power2.out",
+//       onComplete: () => {
+//         console.log("Animation Complete");
+//         setExpanded((prevExpanded) => {
+//           console.log("Previous State:", prevExpanded);
+//           return true;
+//         });
+//       },
+//     });
+//   };
+
+
+//   // const handleReadMore = () => {
+//   //   console.log("Animation Start");
+//   //   gsap.to([imageRef.current, textRef.current], {
+//   //     x: -300,
+//   //     opacity: 0,
+//   //     duration: 1,
+//   //     ease: "power2.out",
+//   //     onComplete: () => {
+//   //       console.log("Animation Complete");
+//   //       setExpanded(true);
+//   //     },
+//   //   });
+//   // };
+
+//   const AboutExpandedContent = () => (
+//     <div className="about-expanded-text">
+//       <h2>More About Me</h2>
+//       <p>
+//         Over the years, I have honed my skills in various technologies,
+//         including React, Node.js, and MongoDB. My projects reflect a dedication
+//         to creating efficient and visually appealing applications that solve
+//         real-world problems.
+//       </p>
+//     </div>
+//   );
+
+//   return (
+//     <section id="about">
+//       <div className="about-container">
+//         {!expanded ? (
+//           <>
+//             <div ref={imageRef} className="about-image">
+//               <img src="/images/image.jpg" alt="Profile" />
+//             </div>
+//             <div ref={textRef} className="about-text">
+//               <h2>About Me</h2>
+//               <p>
+//                 I am Ashfaque Ahmed, a self-taught full-stack developer with an
+//                 unwavering passion for coding and a commitment to continuous
+//                 learning.
+//               </p>
+//               <button onClick={handleReadMore}>Read More</button>
+//             </div>
+//           </>
+//         ) : (
+//           ReactDOM.createPortal(
+//             <AboutExpandedContent />,
+//             document.getElementById("portal-root")
+//           )
+//         )}
+//       </div>
+//     </section>
+//   );
+// };
+
+// export default About;
+
+
+
+
+
+
+
+
+
+
+

@@ -9,6 +9,7 @@ import './App.css'
 import './StyleSheet/Style.css'
 import Skills from './Pages/Skills';
 import Footer from './Pages/Footer';
+import Projects from './Pages/Projects';
 
 
 
@@ -26,6 +27,7 @@ function App() {
       <About />
       <Services />
       <Skills />
+      <Projects />
       <Contact />
       <Footer/>
     </div>
