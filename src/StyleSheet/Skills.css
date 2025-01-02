@@ -83,7 +83,7 @@
   }
 
   .skills-card {
-    width: 100% !important;
+    /* width: 100% !important; */
 
   }
 }
@@ -95,7 +95,7 @@
 
   .skills-card {
     padding: 15px;
-    width: 100%;
+    width: auto
 
   }
 

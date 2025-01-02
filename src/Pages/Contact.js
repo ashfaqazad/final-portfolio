@@ -32,7 +32,7 @@ const Contact = () => {
     contactItemsRef.current.forEach((item, index) => {
       gsap.fromTo(
         item,
-        { opacity: 0, rotate: -90, y: 50 },
+        { opacity: 0, rotate: -10, y: 50 },
         {
           opacity: 1,
           rotate: 0,
@@ -53,7 +53,7 @@ const Contact = () => {
     formFieldsRef.current.forEach((field, index) => {
       gsap.fromTo(
         field,
-        { opacity: 0, rotate: 90, x: 50 },
+        { opacity: 0, rotate: -10, x: 100 },
         {
           opacity: 1,
           rotate: 0,

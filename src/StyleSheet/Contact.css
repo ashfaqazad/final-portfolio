@@ -1,9 +1,15 @@
+* {
+  box-sizing: border-box;
+}
+
+
 .contact-section {
   padding: 50px;
 }
 
 .container {
   max-width: 1200px;
+  width: 100%;
   margin: 0 auto;
   text-align: center;
 }
@@ -28,11 +34,15 @@
 }
 
 .contact-item {
+  width: 100%; /* Make sure it doesn't exceed the parent */
+  word-break: break-word; /* Break long words */
+  white-space: normal; /* Ensure text wraps to the next line */
+
   background: #1d1d1d;
   padding: 20px;
   border-radius: 8px;
   text-align: center;
-  width: 300px;
+  /* width: 300px; */
 }
 
 .contact-item h2 {
@@ -85,7 +95,7 @@
   }
 
   .contact-item {
-    width: 90%;
+    width: 100%;
     max-width: 400px;
   }
 
@@ -108,8 +118,44 @@
   }
 }
 
+
 /* For screens smaller than 480px */
 @media (max-width: 480px) {
+   .contact-item {
+    width: 100%;
+    overflow: auto; /* Content ko bahar jane se rokega */
+    padding: 10px; /* Padding add karein to avoid overlap */
+    word-wrap: break-word; 
+  
+  }
+
+  .contact-form {
+    padding: 10px;
+  }
+
+  .contact-form button {
+    font-size: 0.9rem;
+    padding: 10px;
+  }
+
+  .contact-heading {
+    font-size: 2rem;
+  }
+
+  .contact-text {
+    font-size: 0.9rem;
+  }
+}
+
+
+
+
+
+
+
+
+/* For screens smaller than 480px */
+/* @media (max-width: 480px) {
   .contact-item {
     width: 100%;
     padding: 10px;
@@ -131,4 +177,4 @@
   .contact-text {
     font-size: 0.9rem;
   }
-}
+} */
